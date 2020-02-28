@@ -3,7 +3,6 @@ import Axios from 'axios'
 function UrlCall() {
 
     const BASE_URL = 'https://api.themoviedb.org/3/discover/movie?api_key=3a94078fb34b772a31d9a1348035bed7&language=en-US';
-    // const HEADER_MENU = '&sort_by=$custom.desc&include_adult=false&include_video=false&page=1'
     let url = BASE_URL;
 
     function getCall(url) {
@@ -13,16 +12,6 @@ function UrlCall() {
             });
         })
     };
-    // //rated; popularity; favorites; recommendations; watchlist
-    // function getCustomCall(menu = 'popularity') {
-    //     let url = BASE_URL + HEADER_MENU.replace('$custom', menu);
-    //     console.log(url);
-    //     getCall(url).then((data) => {
-    //         if (data && data.results) {
-    //             setShowMovies(data.results);
-    //         }
-    //     })
-    // }
 
     /* the first call which the system would do */
     function defaultCall() {
@@ -31,8 +20,6 @@ function UrlCall() {
                 if (data && data.results) {
                     resolve(data.results);
                 }
-            },()=>{
-                reject("Error occurred");
             });
         })
     }

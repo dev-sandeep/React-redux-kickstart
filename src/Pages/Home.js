@@ -1,25 +1,17 @@
 import React, { useState, useEffect, setState } from 'react'
-import UseBaseContext from './../ContextApi/UseBaseContext'
 import UriCall from './../ContextApi/UrlCall'
 import Card from 'react-bootstrap/Card'
 import Button from 'react-bootstrap/Button'
 import { limitString } from './../Utility/Utility'
 import { connect } from "react-redux";
+import {fetchNews} from '../Redux/actions/index'
 
 const Home = (props) => {
-    /* get the context instance */
-    const { getData } = UseBaseContext();
-    const { defaultCall } = UriCall();
-    const [data, setData] = useState([]);
-
-    /* load the data by default */
-    useEffect(() => {
-        //component did mount
-        defaultCall().then((data) => {
-            setData(data);
-        });
-    }, []);//the [] is useful to load the data only once
-
+    useEffect(()=>{
+        props.loadNews();
+    });
+    console.log(props.news);
+    let data = props.news || [];
     /* have the loop in the const */
     const loop = data.map((singleData) => (
         <div className="col-lg-4" key={singleData.id.toString()}>
@@ -63,4 +55,12 @@ const mapStateToProps = state => {
     }
 }
 
-export default connect(mapStateToProps)(Home);
+const mapDispatchToProps = dispatch =>{
+    return{
+        loadNews: ()=>{
+            dispatch(fetchNews());
+        }
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Home);

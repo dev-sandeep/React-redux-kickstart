@@ -3,7 +3,8 @@ import './App.css';
 import Header from './Pages/Header'
 import Home from './Pages/Home'
 import { Provider } from 'react-redux'
-import { createStore } from 'redux'
+import { createStore, applyMiddleware } from 'redux'
+import thunk from 'redux-thunk'
 import rootReducer from './Redux/reducers/getterSetter'
 
 import {
@@ -15,7 +16,7 @@ import {
 // import { BaseContextProvider } from './ContextApi/BaseContext'
 
 function App() {
-  const store = createStore(rootReducer)
+  const store = createStore(rootReducer, applyMiddleware(thunk))
   return (
     <div className="App">
       <Provider store={store}>

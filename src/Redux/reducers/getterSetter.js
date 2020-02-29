@@ -16,6 +16,11 @@ const getterSetter = (state = initialState, action) => {
                 ...state, news: action.news
             }
             break;
+        case "SET_DATA": {
+            return {
+                ...state, [action.key]: action.data
+            }
+        }
         default:
             return state
     }

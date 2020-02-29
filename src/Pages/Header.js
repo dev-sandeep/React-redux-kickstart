@@ -7,7 +7,7 @@ import Button from 'react-bootstrap/Button'
 import FormControl from 'react-bootstrap/FormControl'
 import Navbar from 'react-bootstrap/Navbar'
 import { connect } from "react-redux";
-import { setText } from './../Redux/actions/index'
+import { setData } from './../Redux/actions/index'
 
 class Header extends React.Component {
     render() {
@@ -31,13 +31,13 @@ class Header extends React.Component {
 }
 
 const mapStateToProps = state => ({
-    text: state.text
+    text: state.searchElem
 });
 
 const mapDispatchToProps = (dispatch) => {
     return {
         onSearchClick: (text) => {
-            dispatch(setText(text))
+            dispatch(setData(text, 'searchElem'))
         }
     }
 };
